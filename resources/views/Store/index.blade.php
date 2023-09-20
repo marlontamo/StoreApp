@@ -13,8 +13,8 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                
+    
+                     
                     @include('Store-list.index')
                 </div>
             </div>

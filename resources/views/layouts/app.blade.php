@@ -29,7 +29,12 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-
+                    <li class="nav-item ">
+                                    <a class="nav-link text-white" href="{{ route('store.list') }}">{{ __('my Stores') }}</a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link text-white" href="{{ route('store.create') }}">{{ __('Create') }}</a>
+                                </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -38,13 +43,13 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link text-white" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link text-white" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
@@ -72,7 +77,7 @@
         </nav>
 
         <main class="py-4">
-            @yield('content')
+   @yield('content')
         </main>
     </div>
 </body>

@@ -34,4 +34,4 @@ Route::get('/store/{id}',[StoreController::class, 'edit'])->name('store.edit');
 //store update data to DB
 Route::put('/store',[StoreController::class, 'update'])->name('store.update');
 //delete single store
-Route::delete('/store/{id}',[StoreController::class, 'destroy'])->name('store.list');
+Route::delete('/store/{id}',[StoreController::class, 'destroy'])->name('store.destroy');

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Storemodel;
+use Session;
 
 class StoreController extends Controller
 {
@@ -11,7 +13,8 @@ class StoreController extends Controller
      */
     public function index()
     {
-        return view('Store.index');
+        $stores = Storemodel::all();
+        return view('Store.index', compact('stores'));
     }
 
     /**
@@ -26,8 +29,20 @@ class StoreController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        echo "Saving Store";
+     { $store = new Storemodel();
+        $validatedData = $request->validate([
+            'title' => 'required|max:255',
+            'description' => 'required',
+            'location' => 'required|max:255',
+        ]);
+         $store->name = $request->title;
+         $store->description = $request->description;
+         $store->location = $request->location;
+         $store->user_id = $request->userId;
+         $store->save();
+    
+         Session::flash('message', "Store was successfully created");
+         return back();
     }
 
     /**
