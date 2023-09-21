@@ -19,19 +19,10 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-//Route::resource('store',StoreController::class);
+Route::resource('store',StoreController::class);
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 //view store list
-Route::get('/store',[StoreController::class, 'index'])->name('store.list');
-//view single store
-Route::get('/store/{id}',[StoreController::class, 'show'])->name('store.view');
-//create form
-Route::get('/store/create',[StoreController::class, 'create'])->name('store.create');
-//save store data
-Route::post('/store',[StoreController::class,'store'])->name('store.save');
-//store edit form
-Route::get('/store/{id}/edit',[StoreController::class, 'edit'])->name('store.edit');
-//store update data to DB
-Route::post('/store/{store}',[StoreController::class, 'update'])->name('store.update');
-//delete single store
-Route::delete('/store/{id}',[StoreController::class, 'destroy'])->name('store.destroy');
+ Route::get('/store',[StoreController::class, 'index'])->name('store.list');
+
+ Route::post('/store',[StoreController::class,'store'])->name('store.save');
+
