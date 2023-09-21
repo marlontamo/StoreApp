@@ -5,15 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Storemodel;
 use Session;
-
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 class StoreController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
-    {
-        $stores = Storemodel::all();
+    {   
+        $currentUser= Auth::user();
+        $stores = Storemodel::where('user_id',$currentUser->id)->get();
         return view('Store.index', compact('stores'));
     }
 
