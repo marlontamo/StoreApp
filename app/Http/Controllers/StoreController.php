@@ -50,7 +50,8 @@ class StoreController extends Controller
      */
     public function show(string $id)
     {
-        return view('Store.show');
+        $store = Storemodel::findOrFail($id);
+        return view('Store.show', compact('store'));
     }
 
     /**
@@ -58,7 +59,8 @@ class StoreController extends Controller
      */
     public function edit(string $id)
     {
-        return view('Store.edit');
+        $store = Storemodel::findOrFail($id);
+        return view('Store.edit', compact('store'));
     }
 
     /**
@@ -66,7 +68,22 @@ class StoreController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        echo "Update Store data";
+        $request->validate([
+            'title' => 'required|max:255',
+            'description' => 'required',
+            'location' => 'required|max:255',
+        ]);
+        $store = Storemodel::findOrFail($id);
+
+        $store->update([
+            'title' => $request->input('title'),
+            'description' => $request->input('description'),
+            'location' => $request->input('location'),
+        ]);
+        $store->save();
+        
+        Session::flash('message', "Store ID ".$id." was successfully updated");
+         return back();
     }
 
     /**
@@ -74,6 +91,10 @@ class StoreController extends Controller
      */
     public function destroy(string $id)
     {
-        echo "Delete single Store";
+        
+        $store = Storemodel::findOrFail($id);
+        $store->delete();
+        Session::flash('message', "Store ID ".$id." was successfully deleted");
+         return redirect()->route('store.list');
     }
 }

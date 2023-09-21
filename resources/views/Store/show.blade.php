@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    {{ __('Single Store View') }}
+                    @include('forms.show')
                 </div>
             </div>
         </div>
