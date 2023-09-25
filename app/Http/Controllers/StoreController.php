@@ -15,7 +15,8 @@ class StoreController extends Controller
     public function index()
     {   
         $currentUser= Auth::user();
-        $stores = Storemodel::where('user_id',$currentUser->id)->get();
+        $user = User::findOrFail($currentUser->id);
+        $stores = $user->store()->get();
         return view('Store.index', compact('stores'));
     }
 
