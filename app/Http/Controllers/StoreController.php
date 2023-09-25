@@ -78,12 +78,9 @@ class StoreController extends Controller
             'location' => 'required|max:255',
         ]);
         $store = Storemodel::findOrFail($id);
-
-        $store->update([
-            'title' => $request->input('title'),
-            'description' => $request->input('description'),
-            'location' => $request->input('location'),
-        ]);
+        $store->name = $request->title;
+        $store->description = $request->description;
+        $store->location = $request->location;
         $store->save();
         
         Session::flash('message', "Store ID ".$id." was successfully updated");
