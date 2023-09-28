@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StoreController;
+use App\Http\Controllers\ProductController;
 use App\Models\User;
 use App\Models\Storemodel;
 /*
@@ -28,6 +29,7 @@ Route::get('/test-foreignKey', function(){
 Auth::routes();
 
  Route::group(['middleware' =>['auth']], function(){
+    Route::resource('product',ProductController::class);
     Route::resource('store',StoreController::class);
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     //view store list

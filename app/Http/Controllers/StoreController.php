@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Storemodel;
+use App\Models\Store;
 use Session;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -15,7 +15,7 @@ class StoreController extends Controller
     public function index()
     {   
         $currentUser= Auth::user();
-        $stores = Storemodel::where('user_id',$currentUser->id)->get();
+        $stores = Store::where('user_id',$currentUser->id)->get();
         return view('Store.index', compact('stores'));
     }
 
@@ -32,7 +32,7 @@ class StoreController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-     { $store = new Storemodel();
+     { $store = new Store();
         $validatedData = $request->validate([
             'title' => 'required|max:255',
             'description' => 'required',
@@ -53,7 +53,7 @@ class StoreController extends Controller
      */
     public function show(string $id)
     {
-        $store = Storemodel::findOrFail($id);
+        $store = Store::findOrFail($id);
         return view('Store.show', compact('store'));
     }
 
@@ -62,7 +62,7 @@ class StoreController extends Controller
      */
     public function edit(string $id)
     {
-        $store = Storemodel::findOrFail($id);
+        $store = Store::findOrFail($id);
         return view('Store.edit', compact('store'));
     }
 
@@ -76,7 +76,7 @@ class StoreController extends Controller
             'description' => 'required',
             'location' => 'required|max:255',
         ]);
-        $store = Storemodel::findOrFail($id);
+        $store = Store::findOrFail($id);
 
         $store->update([
             'title' => $request->input('title'),
@@ -95,7 +95,7 @@ class StoreController extends Controller
     public function destroy(string $id)
     {
         
-        $store = Storemodel::findOrFail($id);
+        $store = Store::findOrFail($id);
         $store->delete();
         Session::flash('message', "Store ID ".$id." was successfully deleted");
          return redirect()->route('store.list');

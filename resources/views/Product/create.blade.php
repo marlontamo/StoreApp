@@ -4,9 +4,9 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card text-center">
-                <div class="card-header">{{ __('Store View') }}</div>
-                 @include('forms.Buttons.button')
+            <div class="card">
+                <div class="card-header">{{ __('create new Product') }}</div>
+
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
@@ -14,7 +14,9 @@
                         </div>
                     @endif
 
-                    @include('forms.show')
+                   
+
+                    @include('forms.product.store')
                 </div>
             </div>
         </div>
