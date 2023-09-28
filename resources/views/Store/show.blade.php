@@ -15,6 +15,8 @@
                     @endif
 
                     @include('forms.show')
+                    @include('forms.StoreWithProduct.show')
+                    
                 </div>
             </div>
         </div>

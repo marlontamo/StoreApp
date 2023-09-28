@@ -15,12 +15,9 @@ class StoreController extends Controller
     public function index()
     {   
         $currentUser= Auth::user();
-<<<<<<< HEAD
         $stores = Store::where('user_id',$currentUser->id)->get();
-=======
         $user = User::findOrFail($currentUser->id);
         $stores = $user->store()->get();
->>>>>>> 6330fe5475d171e8c2efd0da58f2de10d0fb6ad1
         return view('Store.index', compact('stores'));
     }
 
@@ -59,7 +56,9 @@ class StoreController extends Controller
     public function show(string $id)
     {
         $store = Store::findOrFail($id);
-        return view('Store.show', compact('store'));
+        $products = $store->product()->get();
+        //return dd($products);
+        return view('Store.show', compact('store','products'));
     }
 
     /**
@@ -68,6 +67,7 @@ class StoreController extends Controller
     public function edit(string $id)
     {
         $store = Store::findOrFail($id);
+        
         return view('Store.edit', compact('store'));
     }
 
@@ -81,7 +81,6 @@ class StoreController extends Controller
             'description' => 'required',
             'location' => 'required|max:255',
         ]);
-<<<<<<< HEAD
         $store = Store::findOrFail($id);
 
         $store->update([
@@ -89,12 +88,10 @@ class StoreController extends Controller
             'description' => $request->input('description'),
             'location' => $request->input('location'),
         ]);
-=======
         $store = Storemodel::findOrFail($id);
         $store->name = $request->title;
         $store->description = $request->description;
         $store->location = $request->location;
->>>>>>> 6330fe5475d171e8c2efd0da58f2de10d0fb6ad1
         $store->save();
         
         Session::flash('message', "Store ID ".$id." was successfully updated");
