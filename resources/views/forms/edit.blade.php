@@ -2,10 +2,10 @@
 @if (Session::has('message'))
    <div class="alert alert-info">{{ Session::get('message') }}</div>
 @endif
-<form method="POST" action="{{ route('store.update', $store->id) }}">
+<form method="POST" action="{{ route('store.update', $store) }}">
         @csrf
         <!-- Use PUT method for updating the item -->
-
+        @method('put')
         <div class="form-group">
             <label for="title">Title</label>
             <input type="text" class="form-control" id="title" name="title" value="{{ $store->name }}">
