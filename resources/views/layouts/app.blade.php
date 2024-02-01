@@ -30,10 +30,10 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                     <li class="nav-item ">
-                                    <a class="nav-link text-white" href="{{ route('store.list') }}">{{ __('my Stores') }}</a>
+                                    <a class="nav-link text-white" href="{{ route('store.list') }}">{{ __('my Store List') }}</a>
                                 </li>
                                 <li class="nav-item ">
-                                    <a class="nav-link text-white" href="{{ route('store.create') }}">{{ __('Create') }}</a>
+                                    <a class="nav-link text-white" href="{{ route('store.create') }}">{{ __('Register New Store') }}</a>
                                 </li>
                     </ul>
 

@@ -23,15 +23,16 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('Product.create');
+        $stores = Store::all();
+        //return dd($stores);
+        return view('Product.create',compact('stores'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-      // return dd($request->all());
+    {  
        $product = new Product();
        $product->title = $request->title;
        $product->description = $request->description;
@@ -50,7 +51,8 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        return view('Product.show');
+        $product = Product::findOrFail($id);
+        return view('Product.show',compact('product'));
     }
 
     /**
@@ -58,7 +60,8 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
-        return view('Product.edit');
+        $product = Product::findOrFail($id);
+        return view('Product.edit',compact('product'));
     }
 
     /**
@@ -66,7 +69,15 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        
+        $product = Product::findOrFail($request->product_id);
+        $product->title = $request->product_title;
+        $product->description = $request->product_description;
+        $product->price = $request->product_price;
+        $product->status = $request->product_status;
+        $product->save();
+        Session::flash('message', "A Product was successfully updated");
+         return back();
     }
 
     /**
@@ -74,6 +85,6 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        echo "Are You sure you want to delete this Product?";
     }
 }

@@ -1,4 +1,4 @@
-<b>Products for this Store</b>
+<b>Products Listed for this Store</b>
 <hr>
  <table class="table">
         <thead>
@@ -21,9 +21,9 @@
                     <td>{{$product['status']}}</td>
                     <td>
                     <div class="btn-group" role="group" aria-label="actions">
-  <a href="/store/{{$store['id']}}" class="btn btn-primary btn-sm">view</a>
-  <a href="/store/{{$store['id']}}/edit" class="btn btn-warning btn-sm">edit</a>
-  <form method="post" action="{{route('store.destroy', $store['id'])}}">
+  <a href="/product/{{$product['id']}}" class="btn btn-primary btn-sm">view</a>
+  <a href="/product/{{$product['id']}}/edit" class="btn btn-warning btn-sm">edit</a>
+  <form method="post" action="{{route('product.destroy', $product['id'])}}">
     @csrf
     @method('delete')
   <button type="submit" class="btn btn-danger btn-sm">delete</button>

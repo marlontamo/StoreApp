@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Store;
 use Session;
 use App\Models\User;
+use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 class StoreController extends Controller
 {
@@ -56,8 +57,9 @@ class StoreController extends Controller
     public function show(string $id)
     {
         $store = Store::findOrFail($id);
+        //$store = $store->get();
         $products = $store->product()->get();
-        //return dd($products);
+    
         return view('Store.show', compact('store','products'));
     }
 
@@ -76,25 +78,26 @@ class StoreController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        //return dd($request->title);
         $request->validate([
-            'title' => 'required|max:255',
+            'title' => 'required',
             'description' => 'required',
             'location' => 'required|max:255',
         ]);
         $store = Store::findOrFail($id);
 
         $store->update([
-            'title' => $request->input('title'),
-            'description' => $request->input('description'),
-            'location' => $request->input('location'),
+            'title' => $request->title,
+            'description' => $request->description,
+            'location' => $request->location,
         ]);
-        $store = Storemodel::findOrFail($id);
+        $store = Store::findOrFail($id);
         $store->name = $request->title;
         $store->description = $request->description;
         $store->location = $request->location;
         $store->save();
         
-        Session::flash('message', "Store ID ".$id." was successfully updated");
+        Session::flash('message',  $request->title." was successfully updated");
          return back();
     }
 
@@ -103,10 +106,12 @@ class StoreController extends Controller
      */
     public function destroy(string $id)
     {
-        
         $store = Store::findOrFail($id);
-        $store->delete();
-        Session::flash('message', "Store ID ".$id." was successfully deleted");
-         return redirect()->route('store.list');
+         
+        echo "<h3>Are you sure you want to delete <code>". $store->name ."</code>?</h3>";
+        // $store = Store::findOrFail($id);
+        // $store->delete();
+        // Session::flash('message', "Store ID ".$id." was successfully deleted");
+        //  return redirect()->route('store.list');
     }
 }

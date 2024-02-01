@@ -7,7 +7,7 @@
             <div class="card text-center">
                 <div class="card-header">{{ __('Store View') }}</div>
                  @include('forms.Buttons.button')
-                <div class="card-body">
+                <div class="card-body bg-warning">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}

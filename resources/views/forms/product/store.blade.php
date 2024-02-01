@@ -27,14 +27,14 @@
             </div>
             <div class="form-group">
                 <label for="location">Store:</label>
-                <select name="store_id" id="">
-                    <option value=1>Store 1</option>
-                    <option value=2>Store 2</option>
-                    <option value=3>Store 3</option>
-                    <option value=4>Store 4</option>
-                    <option value=5>Store 5</option>
+                
+                <select class="form-select" name="store_id" id="">
+                 @foreach($stores as $store)  
+                <option value="{{$store->id}}">{{$store->name}}</option>
+                @endforeach 
+                
                 </select>
-                <!--input type="text" class="form-control" id="location" name="location" required-->
+                
             </div>
 
             <button type="submit" class="btn btn-primary">Create</button>
