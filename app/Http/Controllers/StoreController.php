@@ -10,9 +10,7 @@ use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 class StoreController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index()
     {   
         $currentUser= Auth::user();
