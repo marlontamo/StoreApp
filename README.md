@@ -1,4 +1,12 @@
-edit from marlon2
+#after clone
+<p align="center">
+<a href="#">composer install</a>
+<a href="#">npm install</a> 
+<a href="#">change db to sqlite</a>
+<a href="#">php artisan migrate</a> 
+<a href="#">php artisan serve</a> 
+<a href="#">npm run dev</a>
+</p>
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
